@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyCar Hub - Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
+        h1 { color: #333; }
+        form { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 300px; margin-bottom: 20px; }
+        input { width: 100%; padding: 8px; margin: 8px 0; box-sizing: border-box; }
+        button { background: #007bff; color: white; border: none; padding: 10px; width: 100%; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { background-color: #007bff; color: white; }
+    </style>
+</head>
+<body>
+    <h1>MyCar Hub - Vehicle Management</h1>
+    
+    <!-- نموذج إضافة سيارة -->
+    <form action="/add" method="POST">
+        <h3>Add New Vehicle</h3>
+        <input type="text" name="car_model" placeholder="Car Model (e.g. Camry 2025)" required>
+        <input type="text" name="plate_number" placeholder="Plate Number" required>
+        <input type="number" name="mileage" placeholder="Current Mileage (KM)" required>
+        <button type="submit">Add Vehicle</button>
+    </form>
+
+    <!-- جدول عرض السيارات المسجلة -->
+    <h3>Registered Vehicles</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Car Model</th>
+            <th>Plate Number</th>
+            <th>Mileage (KM)</th>
+        </tr>
+        {% for car in cars %}
+        <tr>
+            <td>{{ car['id'] }}</td>
+            <td>{{ car['car_model'] }}</td>
+            <td>{{ car['plate_number'] }}</td>
+            <td>{{ car['mileage'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
